@@ -51,9 +51,12 @@
         alert(`半徑:${r}公分，圓面積:${area}平方公分`);
 
         let i = 0;
-        let bimRecord = [10, 20, 30];
+        //let bimRecord = [10, 20, 30];
+        let bimRecord = [];
+
+
         //取得最後值的寫法
-        console.log(bimRecord[bimRecord.length - 1]);
+        //console.log(bimRecord[bimRecord.length - 1]);
 
         // while(true)迴圈-不固定次數- break + continue
         while (true) {
@@ -64,18 +67,27 @@
             let weight = prompt(`第${i + 1}次輸入，請輸入體重(公斤):`);
             let bmi = getBmi(height, weight);
 
-            //toFixed(n) 約束小數點，輸出結果由數值變字串
+            //toFixed(n) 約束小數點，
+            //輸出結果由數值變字串
             console.log(`身高: ${height}，體重: ${weight}，BMI: ${bmi}`);
             alert(`身高: ${height} 公分，體重: ${weight} 公斤，BMI: ${bmi}`);
             i++;
-            bimRecord.push(Number(bmi));
+            bimRecord.push({
+                "height": height,
+                "weight": weight,
+                //注意!!要將bmi轉數值才能計算平均BMI
+                "bmi": Number(bmi),
+            });
         }
 
         let total = 0;
         //輸出
         for (let i = 0; i < bimRecord.length; i++) {
             console.log(`${i}=>${bimRecord[i]}`);
-            total += bimRecord[i];
+            console.log(bimRecord[i]);
+
+            //叫出字典值，也可以用 total += bimRecord[i]["bmi"];
+            total += bimRecord[i].bmi;
 
         }
 
